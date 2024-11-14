@@ -8,10 +8,7 @@ export const PokedexStyles = styled.div`
         justify-content: space-between;
         margin: 0 1rem;
     }
-    .pokedexH1{
-        font-size: 2.5rem;
-        color: #BF505A;
-    }
+
     .pokedex{
         display: grid;
         grid-template-areas: "pokeCard pokeCard pokeCard"

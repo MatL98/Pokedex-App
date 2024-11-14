@@ -17,11 +17,13 @@ export const PokemonProvider = ({ children }) => {
     const data = await response.json();
     return data;
   };
+  
   const getPokemonData = async (url) => {
     const response = await fetch(url);
     const data = await response.json();
     return data;
   };
+
   const getPokemon = async (limit, offset) => {
     const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
     const response = await fetch(url);

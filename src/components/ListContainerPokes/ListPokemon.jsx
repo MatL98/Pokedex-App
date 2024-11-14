@@ -59,9 +59,8 @@ const ListPokemon = () =>{
 
     return(
         <PokedexStyles>
-        <SearchBar onSearch={onSearch}/>
+        <SearchBar onSearch={onSearch} cleanSearch={getNames}/>
         <div className="title">
-            <h1 className="pokedexH1" >Pokedex</h1>
             <div>
                 <h2>Página</h2>
                 <Pagination 

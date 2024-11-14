@@ -20,7 +20,7 @@ export const SearchBarStyle = styled.div`
         border-radius: 6px;
         font-size: 1rem;
         padding: 0 0.2rem;
-        background-color: #BF505A;
+        background-color: #FF6B6B;
         height: 1.5rem;
         width: 4rem;
         color: white;
