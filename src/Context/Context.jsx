@@ -24,8 +24,8 @@ export const PokemonProvider = ({ children }) => {
     return data;
   };
 
-  const getPokemon = async (limit, offset) => {
-    const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+  const getPokemon = async (offset) => {
+    const url = `https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`;
     const response = await fetch(url);
     const data = await response.json();
     return data;

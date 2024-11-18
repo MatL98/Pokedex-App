@@ -1,26 +1,33 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './ItemPokemon.css';
 
 const ItemPokemon = (pokemons)=>{
     const pokes = pokemons.pokemons;
 
-    const [colorType, setColorType] = useState('');
     const colorsTypes = [
         {color: 'red', type: 'fire'},
         {color: 'green', type: 'grass'},
         {color: '#b558b5', type: 'poison'},
         {color: 'lightblue', type: 'flying'},
-        {color: 'blue', type: 'water'},
+        {color: '#39a3ff', type: 'water'},
         {color: '#9c9c27', type: 'bug'},
+        {color: '#a222a3', type: 'psychic'},
+        {color: 'brown', type: 'ground'},
+        {color: 'pink', type: 'fairy'},
+        {color: '#a1220a', type: 'fighting'},
+        {color: '#897668', type: 'rock'},
+        {color: '#dbd72f', type: 'electric'},
+        {color: '#b2b1a1', type: 'steel'},
+        {color: '#ac6acc', type: 'ghost'},
+        {color: '#b3edfa', type: 'ice'},
         {color: 'gray', type: 'normal'},
+        {color: '#303030', type: 'dark'},
+        {color: '#3333ba', type: 'dragon'},
     ]
 
     const getColorOfType = (type) => {
-        const color =  colorsTypes.filter((item) => {
-            if (item.type == type) return item.color;
-        })
-
-        return color[0].color
+        const color =  colorsTypes.find((item) => item.type == type)
+        return color ? color.color : 'none'
     }
 
     return(

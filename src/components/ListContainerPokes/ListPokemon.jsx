@@ -1,13 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
 import ItemPokemon from "./ItemPokemon"
 import { PokedexStyles } from "./PokedexStyle";
 import { Context } from "../../Context/Context";
-import Pagination from "../NavBar/SearchBar/Pagination";
 import SearchBar from "../NavBar/SearchBar/SearchBar";
-
-
-
-
+import React, { useEffect, useState, useContext } from "react";
 
 
 const ListPokemon = () =>{
@@ -19,7 +14,7 @@ const ListPokemon = () =>{
 
     const getNames = async ()=>{
             setLoading(true)
-            const data = await getPokemon(15, 15 * page)
+            const data = await getPokemon(20 * page)
             const pokemonsNames = data.results;
             const promises = pokemonsNames.map(async(pokes)=>{
                 return await getPokemonData(pokes.url)
@@ -27,13 +22,30 @@ const ListPokemon = () =>{
             const result = await Promise.all(promises)
             const totalPokemons = data.count;
             const totalPages = (Math.floor(totalPokemons / 15))
+            setPage((page) => page + 1)
             setTotal(totalPages)
             setPokemones(result)
             setLoading(false)           
     }
+    
     useEffect(()=>{
         getNames()
-    }, [page])
+        setPage(0)
+    }, [])
+
+    const handleScroll = () => {
+        if (
+          window.innerHeight + document.documentElement.scrollTop >=
+          document.documentElement.offsetHeight - 50
+        ) {
+          if (!loading) getNames();
+        }
+    };
+    
+    useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+    }, [loading]); 
     
     const onSearch = async (pokemon) =>{
         setLoading(true)
@@ -42,35 +54,10 @@ const ListPokemon = () =>{
         setLoading(false)
     }
 
-
-    const initPage = () =>{
-        setPage(0)
-    }
-    const nextPage = () =>{
-        setPage(page + 1)
-    }
-    const lastPage = () =>{
-        if (page <= 0) {
-            setPage(0)
-        }else{
-            setPage(page - 1)
-        }
-    }
-
     return(
         <PokedexStyles>
         <SearchBar onSearch={onSearch} cleanSearch={getNames}/>
-        <div className="title">
-            <div>
-                <h2>Página</h2>
-                <Pagination 
-                    page={page}
-                    firstPage={initPage}
-                    totalPages={total}
-                    onLeftClick={lastPage}
-                    onRightClick={nextPage}/>
-            </div>
-        </div>
+        <div className="title"></div>
         {loading ? (<h4>cargando pokemones...</h4>)
         :
         (<div className="pokedex">
