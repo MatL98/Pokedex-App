@@ -12,20 +12,23 @@ const ListPokemon = () =>{
     const [loading , setLoading] = useState(true)
     const { getPokemonData, getPokemon, searchPokemon } = useContext(Context)
 
-    const getNames = async ()=>{
-            setLoading(true)
-            const data = await getPokemon(20 * page)
-            const pokemonsNames = data.results;
-            const promises = pokemonsNames.map(async(pokes)=>{
-                return await getPokemonData(pokes.url)
-            })
-            const result = await Promise.all(promises)
-            const totalPokemons = data.count;
-            const totalPages = (Math.floor(totalPokemons / 15))
-            setPage((page) => page + 1)
-            setTotal(totalPages)
-            setPokemones(result)
-            setLoading(false)           
+    const getNames = async (op)=>{
+        setLoading(true)
+        const data = await getPokemon(20 * page)
+        const pokemonsNames = data.results;
+        const promises = pokemonsNames.map(async(pokes)=>{
+            return await getPokemonData(pokes.url)
+        })
+
+        const result = await Promise.all(promises)
+        const totalPokemons = data.count;
+        const totalPages = (Math.floor(totalPokemons / 15))
+
+        setPage((page) => page + 1)
+        setTotal(totalPages)
+
+        setPokemones((prev) => [...prev, ...result])
+        setLoading(false)           
     }
     
     useEffect(()=>{
@@ -40,7 +43,7 @@ const ListPokemon = () =>{
         ) {
           if (!loading) getNames();
         }
-    };
+    };      
     
     useEffect(() => {
     window.addEventListener("scroll", handleScroll);

@@ -12,7 +12,7 @@ const ItemPokemon = (pokemons)=>{
         {color: '#39a3ff', type: 'water'},
         {color: '#9c9c27', type: 'bug'},
         {color: '#a222a3', type: 'psychic'},
-        {color: 'brown', type: 'ground'},
+        {color: '#c6af3f', type: 'ground'},
         {color: 'pink', type: 'fairy'},
         {color: '#a1220a', type: 'fighting'},
         {color: '#897668', type: 'rock'},

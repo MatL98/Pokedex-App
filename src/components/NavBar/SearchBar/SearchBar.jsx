@@ -8,23 +8,20 @@ const SearchBar = (props) => {
 
   useEffect(() => {
     if (search?.length > 0) {
-      goSearch().then()
-    } else {  
-      cleanSearch().then()
+      onSearch(search);
     }
   }, [search]);
 
   const getName = (e) => {
     let pokemonTyped = e.target.value;
 
-    if (pokemonTyped?.length > 0) {
+    if (pokemonTyped?.length) {
       let lowerValue = pokemonTyped.toLowerCase()
       setSearch(lowerValue);
+    } else {
+      cleanSearch()
+      setSearch('')
     }
-  };
-
-  const goSearch = async (e) => {
-    onSearch(search);
   };
 
   return (
