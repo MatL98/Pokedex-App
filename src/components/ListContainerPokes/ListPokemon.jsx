@@ -1,5 +1,5 @@
 import ItemPokemon from "./ItemPokemon"
-import { PokedexStyles } from "./PokedexStyle";
+import './ListPokemon.css'
 import { Context } from "../../Context/Context";
 import SearchBar from "../NavBar/SearchBar/SearchBar";
 import React, { useEffect, useState, useContext } from "react";
@@ -58,16 +58,16 @@ const ListPokemon = () =>{
     }
 
     return(
-        <PokedexStyles>
-        <SearchBar onSearch={onSearch} cleanSearch={getNames}/>
-        <div className="title"></div>
-        {loading ? (<h4>cargando pokemones...</h4>)
-        :
-        (<div className="pokedex">
-            {pokemones.map((pokes, idx)=>{
-                return <ItemPokemon pokemons={pokes} key={pokes.name}/>})}</div>)
-        }
-        </PokedexStyles>
+        <div className="pokedex">
+            <SearchBar onSearch={onSearch} cleanSearch={getNames}/>
+            <div className="title"></div>
+            {loading ? (<h4>cargando pokemones...</h4>)
+            :
+            (<div className="pokedex-list">
+                {pokemones.map((pokes, idx)=>{
+                    return <ItemPokemon pokemons={pokes} key={pokes.name}/>})}</div>)
+            }
+        </div>
     )
 }
 export default ListPokemon;

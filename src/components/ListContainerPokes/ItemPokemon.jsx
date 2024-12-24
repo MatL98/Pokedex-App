@@ -43,6 +43,6 @@ const ItemPokemon = (pokemons)=>{
                 </div>
             </div>
         </div>
-)
+    )
 }
 export default ItemPokemon

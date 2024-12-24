@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SearchBarStyle } from "./SearchBarStyles";
+import './SearchBar.css';
 
 
 const SearchBar = (props) => {
@@ -25,19 +25,9 @@ const SearchBar = (props) => {
   };
 
   return (
-    <SearchBarStyle>
       <div className="searchBar"> 
-          <input id="searchBar" onChange={getName} value={search} type="text" placeholder="Buscar Pokemon..."></input>
-        <button onClick={() => {
-            if (search?.length) {
-              setSearch('')
-              cleanSearch()
-            }
-            }} type="submit" className="btnSearch">
-            X
-          </button>
+          <input id="searchBar-input" onChange={getName} value={search} type="text" placeholder="Buscar Pokemon..."></input>
       </div>
-    </SearchBarStyle>
   );
 };
 export default SearchBar;
